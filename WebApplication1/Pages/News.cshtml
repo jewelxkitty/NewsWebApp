@@ -1,0 +1,35 @@
+﻿@page
+@model WebApplication1.NewsModel
+@{
+    ViewData["Title"] = "News";
+}
+
+<h1>News</h1>
+
+<ul>
+
+
+
+    @foreach (var story in Model.Articles)
+    {
+        <li>
+            <h2>
+                @story.Headline
+
+            </h2>
+            <p>
+               @story.Body
+
+            </p>
+            <p>
+                Written By: @story.Author on @story.Published.ToShortDateString()
+            </p>
+
+        </li>
+    }
+
+
+
+
+</ul>
+
