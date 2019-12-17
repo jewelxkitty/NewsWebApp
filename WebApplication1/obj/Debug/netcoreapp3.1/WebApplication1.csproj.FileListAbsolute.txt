@@ -105,5 +105,5 @@ C:\Users\Owner\source\repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp
 C:\Users\Owner\source\repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Owner\source\repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Owner\source\repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Owner\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\WebApplication1.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Owner\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Pages\News.cshtml.g.cs
+C:\Users\Owner\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\WebApplication1.MvcApplicationPartsAssemblyInfo.cache
