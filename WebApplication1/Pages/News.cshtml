@@ -10,19 +10,19 @@
 
 
 
-    @foreach (var story in Model.Articles)
+    @foreach (var story in Model.apiresult.articles)
     {
         <li>
             <h2>
-                @story.Headline
+                @story.title
 
             </h2>
             <p>
-               @story.Body
+               @story.content
 
             </p>
             <p>
-                Written By: @story.Author on @story.Published.ToShortDateString()
+                Written By: @story.author on @story.publishDate.ToShortDateString()
             </p>
 
         </li>

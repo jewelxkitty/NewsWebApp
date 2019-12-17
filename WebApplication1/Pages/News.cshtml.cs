@@ -7,40 +7,66 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApplication1
 {
-    public class NewsStory
+
+    public class Source
     {
 
-        public string Headline;
-        public string Body;
-        public DateTime Published;
-        public string Author;
+        public string id;
+        public string name;
+
+    }
+    public class Article
+    {
+        public Source source;
+        public string title;
+        public string content;
+        public string publishedAt;
+        public string author;
+        public string description;
+        public string url;
+        public string urlToImage;
+        public DateTime publishDate
+        {
+            get
+            {
+                return DateTime.Today;
+            }
+        }
+    }
+
+    public class APIResult
+    {
+        public string status;
+        public int totalResults;
+        public List<Article> articles;
     }
     public class NewsModel : PageModel
     {
-        public List<NewsStory> Articles = new List<NewsStory>();
-        public string FartNoises = "pfffft";
+        public APIResult apiresult;
 
         public void OnGet()
         {
-            var hello = "Hello";
-            var dogStory = new NewsStory();
 
-            dogStory.Headline = "Local dog saves man from dangerous stick. Bark Bark.";
-            dogStory.Body = "Buddy saw a dangerous stick. Buddy is a good boy. Buddy deserves treats!";
-            dogStory.Published = DateTime.Today;
-            dogStory.Author = "Buddy";
+            apiresult = new APIResult();
+            apiresult.articles = new List<Article>();
+            var dogStory = new Article();
 
-            Articles.Add(dogStory);
+            dogStory.title = "Local dog saves man from dangerous stick. Bark Bark.";
+            dogStory.content = "Buddy saw a dangerous stick. Buddy is a good boy. Buddy deserves treats!";
+            dogStory.publishedAt = DateTime.Today.ToShortDateString();
+            dogStory.author = "Buddy";
+
+            apiresult.articles.Add(dogStory);
 
 
-            var santaStory = new NewsStory();
+            var santaStory = new Article();
 
-            santaStory.Headline = "Mall Santa robs jewlery store!";
-            santaStory.Body = "This mall Santa is outrageous! Stealing stuff!";
-            santaStory.Published = DateTime.Today.AddDays(-1.0);
-            santaStory.Author = "Ed";
+            santaStory.title = "Mall Santa robs jewlery store!";
+            santaStory.content = "This mall Santa is outrageous! Stealing stuff!";
+            santaStory.publishedAt = DateTime.Today.AddDays(-1.0).ToShortDateString();
+            santaStory.author = "Ed";
 
-            Articles.Add(santaStory);
+            apiresult.articles.Add(santaStory);
         }
     }
 }   
