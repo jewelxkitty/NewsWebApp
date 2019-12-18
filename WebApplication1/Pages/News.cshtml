@@ -4,7 +4,7 @@
     ViewData["Title"] = "News";
 }
 
-<h1>News</h1>
+<h1>News Headlines</h1>
 
 <ul>
 
@@ -12,20 +12,22 @@
 
     @foreach (var story in Model.apiresult.articles)
     {
-        <li>
-            <h2>
-                @story.title
+    <li>
+        <h2>
+            @story.title
 
-            </h2>
-            <p>
-               @story.content
+        </h2>
+        <img src=@story.urlToImage/>
+        <p>
+            @story.content
 
-            </p>
-            <p>
-                Written By: @story.author on @story.publishDate.ToShortDateString()
-            </p>
-
-        </li>
+        </p>
+        <p>
+            Written By: @story.author on @story.publishDate.ToShortDateString()
+            <a href=@story.url>Click me to read more about this post.</a>
+        </p>
+        
+    </li>
     }
 
 

@@ -49,26 +49,6 @@ namespace WebApplication1
         public void OnGet()
         {
 
-            /*            apiresult = new APIResult();
-                        apiresult.articles = new List<Article>();
-                        var dogStory = new Article();
-
-                        dogStory.title = "Local dog saves man from dangerous stick. Bark Bark.";
-                        dogStory.content = "Buddy saw a dangerous stick. Buddy is a good boy. Buddy deserves treats!";
-                        dogStory.publishedAt = DateTime.Today.ToShortDateString();
-                        dogStory.author = "Buddy";
-
-                        apiresult.articles.Add(dogStory);
-
-
-                        var santaStory = new Article();
-
-                        santaStory.title = "Mall Santa robs jewlery store!";
-                        santaStory.content = "This mall Santa is outrageous! Stealing stuff!";
-                        santaStory.publishedAt = DateTime.Today.AddDays(-1.0).ToShortDateString();
-                        santaStory.author = "Ed";
-
-                        apiresult.articles.Add(santaStory);*/
 
             var url = "https://newsapi.org/v2/top-headlines?" +
           "country=us&" +
