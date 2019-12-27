@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace WebApplication1
 {
-    public class APIKey
+    public class API
 
     {
-       //add unique API Key in " " 
+        //add unique API Key in " " 
+        public string Key { get; set; }
+        public string Url { get; set; }
 
-        public static string Key = "";
     }
 }

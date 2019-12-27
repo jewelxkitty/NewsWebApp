@@ -1,63 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
+using System.Net.Http;
+using System.Text.Json;
+using System.Collections.Generic;
 
 namespace WebApplication1
 {
-
-    public class Source
-    {
-
-        public string id;
-        public string name;
-
-    }
-    public class Article
-    {
-        public Source source;
-        public string title;
-        public string content;
-        public string publishedAt;
-        public string author;
-        public string description;
-        public string url;
-        public string urlToImage;
-        public DateTime publishDate
-        {
-            get
-            {
-                return DateTime.Today;
-            }
-        }
-    }
-
-    public class APIResult
-    {
-        public string status;
-        public int totalResults;
-        public List<Article> articles;
-    }
     public class NewsModel : PageModel
     {
+        private readonly API apiSettings;
+        private readonly IHttpClientFactory clientFactory;
         public APIResult apiresult;
+
+        public NewsModel(IHttpClientFactory clientFactory, IOptionsSnapshot<API> apiSettings)
+        {
+            this.apiSettings = apiSettings.Value;
+            this.clientFactory = clientFactory;
+        }
 
         public void OnGet()
         {
+            var client = clientFactory.CreateClient();
 
+            var url = $"{apiSettings.Url}&apiKey={apiSettings.Key}";
 
-            var url = "https://newsapi.org/v2/top-headlines?" +
-          "country=us&" +
-          "apiKey=" + APIKey.Key;
+            var response = client.GetAsync(url).Result; //This is an asynchronous call; but let's ignore that an make it synchronous code for now by calling .Result
 
-            var json = new WebClient().DownloadString(url);
+            // we only want to parse the response if it's a sucessful one
+            if (response.IsSuccessStatusCode)
+            {
+                var json = response.Content.ReadAsStringAsync().Result; //This is an asynchronous call; but let's ignore that an make it synchronous code for now by calling .Result
 
-            apiresult = JsonConvert.DeserializeObject<APIResult>(json);
+                //The .Net Core framework now come with it's on JSON serializer/deserializer (System.Text.Json.JsonSerializer) since Newtonsoft.Json is less efficient
+                apiresult = JsonSerializer.Deserialize<APIResult>(json);
+            }
+            else
+            {
+                apiresult = new APIResult { articles = new List<Article>() };
+            }
 
         }
     }
-}   
+}

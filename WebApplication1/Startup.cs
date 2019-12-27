@@ -24,6 +24,14 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            //you can use dependency injection to bind settings from appsettings.json (or elsewhere like user secrets) to a class
+            //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-3.1#options-interfaces
+            services.Configure<API>(Configuration.GetSection("API"));
+
+            //you can use dependency injection to get an instace of an HttpClient. WebClient is not the best way to do this. I know it works; but it's very limited
+            //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.1
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
