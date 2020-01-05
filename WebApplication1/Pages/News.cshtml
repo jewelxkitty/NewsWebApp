@@ -5,21 +5,20 @@
 }
 
 
-
 <h1>News Headlines</h1>
 
 
-@foreach (var story in Model.apiresult.articles)
-{
 
-    <div class="container">
 
-        <a href=@story.url target="_blank">
 
-            <div class="row">
+<div class="container">
+    <div class="row">
 
-                <div class="col-md-4">
 
+        @foreach (var story in Model.apiresult.articles)
+        {
+            <div class="col-sm-4">
+                <a href=@story.url target="_blank">
                     <img src=@story.urlToImage class="img-thumbnail" style="width:100%">
                     <div class="caption">
                         <p>@story.content</p>
@@ -28,16 +27,12 @@
                         </p>
                     </div>
 
-                </div>
-
+                </a>
             </div>
 
-        </a>
-
+        }
     </div>
-
-}
-
+</div>
 
 
 
